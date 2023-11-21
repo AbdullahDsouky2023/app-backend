@@ -1,0 +1,95 @@
+{
+  "kind": "collectionType",
+  "collectionName": "orders",
+  "info": {
+    "singularName": "order",
+    "pluralName": "orders",
+    "displayName": "order",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "date": {
+      "type": "string",
+      "required": true
+    },
+    "time": {
+      "type": "string",
+      "required": true
+    },
+    "service": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::service.service"
+    },
+    "location": {
+      "type": "string",
+      "required": true
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "phoneNumber": {
+      "type": "string",
+      "required": true
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "description": {
+      "type": "text"
+    },
+    "provider": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::provider.provider"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "pending",
+        "assigned",
+        "finished"
+      ],
+      "default": "pending"
+    },
+    "PaymentStatus": {
+      "type": "enumeration",
+      "enum": [
+        "pending",
+        "payment required",
+        "payed",
+        "refunded"
+      ],
+      "default": "pending"
+    },
+    "chat_channel_id": {
+      "type": "string"
+    },
+    "userOrderRating": {
+      "type": "string"
+    },
+    "userOrderReview": {
+      "type": "string"
+    },
+    "region": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::region.region",
+      "inversedBy": "orders"
+    }
+  }
+}
